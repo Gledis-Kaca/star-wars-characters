@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Characters from './components/Characters';
+import NavBar from './components/NavBar';
+import LoginModal from './components/LoginModal';
+import AuthService from './components/AuthService';
 
 function App() {
+  const [showLoginModal, setShowLoginModal] = useState(!AuthService.isAuthenticated);
+
+  const handleLogout = () => {
+    AuthService.logout();
+    setShowLoginModal(true);
+  };
+
+  const handleLoginClose = () => {
+    setShowLoginModal(false);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar onLogout={handleLogout} />
+      {showLoginModal && <LoginModal onClose={handleLoginClose} />}
+      {AuthService.isAuthenticated && <Characters />}
     </div>
   );
 }

@@ -1,0 +1,32 @@
+.filter-container {
+    display: flex;
+    gap: 10px;
+    padding: 30px;
+  }
+  
+  .filter-container > div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-container label {
+    margin-right: 10px;
+  }
+  
+  .filter-input,
+  .filter-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .filter-input {
+    flex-grow: 1;
+    max-width: 300px;
+  }
+  
+  .filter-select {
+    min-width: 150px;
+  }
+  
